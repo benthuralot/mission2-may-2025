@@ -18,7 +18,7 @@ route.post('/calculate', (req, res) => {
 });
 
 //Tu's API risk rating calculator
-route.post("/api/rating", (req, res) => {
+route.post("/rating", (request, response) => {
    try {
     const input = request.body;
     const result = calculateRiskRating(input);

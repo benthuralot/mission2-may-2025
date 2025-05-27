@@ -3,20 +3,11 @@ import { premiumLimits } from "./config/premiumConfig.js";
 // all the error messages
 import { errorMessages } from "./config/errorMessages.js";
 
+// calculator function
+import { calculator } from "./config/premiumCalculatorUnit.js"; 
+
 export function premiumCalculator({ car_value, risk_rating }) {
   
-// ----------------- CALCULATION FORMULA ---------------- //
-  const calculation = {
-    calculatePremium(car_value, risk_rating) {
-      const yearly = (car_value * risk_rating) / 100;
-      const monthly = yearly / 12;
-      return {
-        monthly_premium: parseFloat(monthly.toFixed(2)),
-        yearly_premium: parseFloat(yearly.toFixed(2)),
-      };
-    },
-  };
-
   // --------------------- VALIDATION --------------------- //
   if (car_value === undefined || risk_rating === undefined)
     return { error: errorMessages.MISSING_INPUT };
@@ -55,5 +46,5 @@ export function premiumCalculator({ car_value, risk_rating }) {
     };
 
   // ----------- IF VALID, CALCULATE AND RETURN ----------- //
-  return calculation.calculatePremium(car_value, risk_rating);
+  return calculator.calculatePremium(car_value, risk_rating);
 }

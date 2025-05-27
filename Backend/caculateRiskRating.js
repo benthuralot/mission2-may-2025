@@ -8,7 +8,7 @@
  * @param {Object} input - JSON object containing the claim_history field.
  * @returns {Object} JSON object with either a risk_rating or error details.
  */
-function calculateRiskRating(input) {
+export function calculateRiskRating(input) {
   console.log("Received input:", input); // Log the input for debugging
 
   // Destructure claim_history from the input
@@ -65,5 +65,5 @@ function calculateRiskRating(input) {
   return { risk_rating: riskRating };
 }
 
-module.exports = { calculateRiskRating };
+// module.exports = { calculateRiskRating };
 
