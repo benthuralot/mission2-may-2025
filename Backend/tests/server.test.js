@@ -1,7 +1,7 @@
 import request from "supertest";
 import app from "../server.js";
 
-import { errorMessages } from "./config/errorMessages.js";
+import { errorMessages } from "../config/errorMessages.js";
 
 describe("POST api/premium-calculator", () => {
   
