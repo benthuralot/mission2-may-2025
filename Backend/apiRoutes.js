@@ -1,6 +1,8 @@
 // apiRoutes.js
 import express from 'express';
 import { calculateCarValue } from './api-01.js';
+import { premiumCalculator } from './premiumCalculator.js';
+import { calculateRiskRating } from './caculateRiskRating.js';
 
 const router = express.Router();
 
@@ -17,8 +19,38 @@ router.post('/calculate', (req, res) => {
 
 //Tu's API risk rating calculator
 app.post("/api/rating", (req, res) => {
-  const result = calculateRiskRating(req.body);
-  res.json(result); 
+   try {
+    const input = request.body;
+    const result = calculateRiskRating(input);
+
+    if (result.error) {
+      return response.status(400).json(result);
+    }
+
+    response.status(200).json(result);
+  } catch(error) {
+    console.error(error);
+    response.status(500).json({ error: 'Internal server error' });
+  }
 });
+
+
+// Erek's API: calculates premium
+router.post('/premium-calculator', (request, response) => {
+  try {
+    const input = request.body;
+    const result = premiumCalculator(input);
+
+    if (result.error) {
+      return response.status(400).json(result);
+    }
+
+    response.status(200).json(result);
+  } catch(error) {
+    console.error(error);
+    response.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 export default router;
