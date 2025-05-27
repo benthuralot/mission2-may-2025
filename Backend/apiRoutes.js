@@ -1,6 +1,7 @@
 // apiRoutes.js
 import express from 'express';
 import { calculateCarValue } from './api-01.js';
+import { premiumCalculator } from './premiumCalculator.js';
 
 const router = express.Router();
 
@@ -14,5 +15,23 @@ router.post('/calculate', (req, res) => {
   const result = calculateCarValue(req.body.car);
   res.json({ result });
 });
+
+// Erek's API: calculates premium
+router.post('/premium-calculator', (request, response) => {
+  try {
+    const input = request.body;
+    const result = premiumCalculator(input);
+
+    if (result.error) {
+      return response.status(400).json(result);
+    }
+
+    response.status(200).json(result);
+  } catch(error) {
+    console.error(error);
+    response.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 export default router;
