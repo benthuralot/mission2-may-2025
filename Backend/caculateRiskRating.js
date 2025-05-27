@@ -1,9 +1,3 @@
-// Import the Express module
-import app from 'apiRoutes.js';
-const express = require("express");
-const app = express();
-const PORT = 4000;
-app.use(express.json());
 
 /**
  * Calculates the risk rating of a driver based on their claim history.
@@ -72,9 +66,7 @@ function calculateRiskRating(input) {
 }
 
 // Start the Express server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+
 
 module.exports = { calculateRiskRating };
 
