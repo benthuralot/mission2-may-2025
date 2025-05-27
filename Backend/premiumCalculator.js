@@ -1,7 +1,7 @@
-import { premiumLimits } from "../config/premiumConfig.js";
+import { premiumLimits } from "./config/premiumConfig.js";
 
 // all the error messages
-import { errorMessages } from "../config/errorMessages.js";
+import { errorMessages } from "./config/errorMessages.js";
 
 export function premiumCalculator({ car_value, risk_rating }) {
   
