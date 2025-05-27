@@ -15,4 +15,10 @@ router.post('/calculate', (req, res) => {
   res.json({ result });
 });
 
+//Tu's API risk rating calculator
+app.post("/api/rating", (req, res) => {
+  const result = calculateRiskRating(req.body);
+  res.json(result); 
+});
+
 export default router;
