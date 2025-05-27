@@ -65,8 +65,5 @@ function calculateRiskRating(input) {
   return { risk_rating: riskRating };
 }
 
-// Start the Express server
-
-
 module.exports = { calculateRiskRating };
 
