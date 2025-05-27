@@ -8,7 +8,9 @@
  * @param {Object} input - JSON object containing the claim_history field.
  * @returns {Object} JSON object with either a risk_rating or error details.
  */
+
 import { errorMessages } from "./config/errorMessages.js";
+
 export function calculateRiskRating(input) {
   console.log("Received input:", input); // Log the input for debugging
 
@@ -56,3 +58,4 @@ export function calculateRiskRating(input) {
   // Return the final risk rating
   return { risk_rating: riskRating };
 }
+
