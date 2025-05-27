@@ -5,4 +5,6 @@ export const errorMessages = {
   ZERO_INPUT: "there is an error: input cannot be zero", 
   INVALID_RISK: "there is an error: risk rating value must be between 1 and 5",
   INVALID_CAR_VALUE: "there is an error: car value must be between 500 and 1,500,000",
+  INVALID_DATA_TYPE_STRING: "there is an error: input must be a string",
+  JSON_OBJECT:"Input is null, undefined, or not a valid object. It must be a valid JSON object.",
 };
