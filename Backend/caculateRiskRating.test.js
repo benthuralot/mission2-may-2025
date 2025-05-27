@@ -11,7 +11,7 @@ Edge Cases: Inputs with similar but not exact keywords to test accuracy in keywo
 */
 
 const { calculateRiskRating } = require("./caculateRiskRating.js");
-
+import { errorMessages } from "./config/errorMessages.js";
 describe("Risk Rating API Tests", () => {
   // Cover Type: Positive
   test("Should return a risk rating of 3 for valid input with 3 keywords", () => {
@@ -44,6 +44,16 @@ describe("Risk Rating API Tests", () => {
     expect(result).toEqual({ risk_rating: 1 });
   });
 
+    // Cover Type: Positive
+  test("Should return a risk rating of 5 for case-insensitive matching of repeated keywords", () => {
+    const input = {
+      claim_history: "crash Crash CRASH bump BUMP bump smash SMASH",
+    };
+
+    const result = calculateRiskRating(input);
+    expect(result).toEqual({ risk_rating: 5 });
+  });
+  
   // Cover Type: Boundary
   test("Should return a risk rating of 5 for input with more than 5 keywords", () => {
     const input = {
@@ -73,19 +83,8 @@ describe("Risk Rating API Tests", () => {
 
     const result = calculateRiskRating(input);
     expect(result).toEqual({
-      description: "Missing required key: claim_history.",
-      error: "error",
+      error: errorMessages.MISSING_INPUT,
     });
-  });
-
-  // Cover Type: Positive
-  test("Should return a risk rating of 5 for case-insensitive matching of repeated keywords", () => {
-    const input = {
-      claim_history: "crash Crash CRASH bump BUMP bump smash SMASH",
-    };
-
-    const result = calculateRiskRating(input);
-    expect(result).toEqual({ risk_rating: 5 });
   });
 
   // Cover Type: Negative
@@ -96,8 +95,7 @@ describe("Risk Rating API Tests", () => {
 
     const result = calculateRiskRating(input);
     expect(result).toEqual({
-      error: "error",
-      description: "claim_history must be a string.",
+      error: errorMessages.INVALID_DATA_TYPE_STRING,
     });
   });
 

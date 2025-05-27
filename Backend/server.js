@@ -5,14 +5,14 @@ app.use(express.json());
 app.use("/api", apiRoutes);
 
 // Start the Express server
-const PORT = process.env.PORT || 4000;
-app
-  .listen(PORT, () => {
-    console.log(`server listening at http://localhost:${PORT}`);
-  })
-  .on('error', (error) => {
-    console.log('Server Error - !', error);
-  });
+// const PORT = process.env.PORT || 4000;
+// app
+//   .listen(PORT, () => {
+//     console.log(`server listening at http://localhost:${PORT}`);
+//   })
+//   .on('error', (error) => {
+//     console.log('Server Error - !', error);
+//   });
  
  
 // Export app without calling listen()
