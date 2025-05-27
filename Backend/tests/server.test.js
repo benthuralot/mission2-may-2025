@@ -6,10 +6,10 @@ import { errorMessages } from "./config/errorMessages.js";
 describe("POST api/premium-calculator", () => {
   
   it("Connection with the server should return success message", async () => {
-    const response = await request(app).get("/");
+    const response = await request(app).get("/api/");
 
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe('API is working');
+    expect(response.body.message).toBe('API is working');
   });
   test("should return 200 and correct premium for valid input", async () => {
     const response = await request(app)
