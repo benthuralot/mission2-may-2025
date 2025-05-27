@@ -5,7 +5,6 @@ app.use(express.json());
 app.use("/api", apiRoutes);
 
 // Start the Express server
-// PORT
 const PORT = process.env.PORT || 4000;
 app
   .listen(PORT, () => {
