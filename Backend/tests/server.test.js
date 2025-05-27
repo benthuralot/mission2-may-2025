@@ -1,7 +1,7 @@
 import request from "supertest";
-import app from "../app.js";
+import app from "../server.js";
 
-import { errorMessages } from "../config/errorMessages.js";
+import { errorMessages } from "./config/errorMessages.js";
 
 describe("POST api/premium-calculator", () => {
   
@@ -9,7 +9,7 @@ describe("POST api/premium-calculator", () => {
     const response = await request(app).get("/");
 
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe("Premium Calculator API is up and running ✅");
+    expect(response.text).toBe('API is working');
   });
   test("should return 200 and correct premium for valid input", async () => {
     const response = await request(app)

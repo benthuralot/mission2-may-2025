@@ -1,13 +1,8 @@
 // Import the Express module
+import app from 'apiRoutes.js';
 const express = require("express");
-
-// Create an Express app instance
 const app = express();
-
-// Define the port number the server will listen on
 const PORT = 4000;
-
-// Middleware to parse incoming JSON requests
 app.use(express.json());
 
 /**
@@ -81,6 +76,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Export the function for use in tests
 module.exports = { calculateRiskRating };
 

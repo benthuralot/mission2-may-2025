@@ -4,15 +4,15 @@ import { calculateCarValue } from './api-01.js';
 import { premiumCalculator } from './premiumCalculator.js';
 import { calculateRiskRating } from './caculateRiskRating.js';
 
-const router = express.Router();
+const app = express.Router();
 
 // GET /api root route to respond with a simple message
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).json({ message: 'API is working' });
 });
 
 // POST /api/calculate route to calculate car value
-router.post('/calculate', (req, res) => {
+app.post('/calculate', (req, res) => {
   const result = calculateCarValue(req.body.car);
   res.json({ result });
 });
@@ -36,7 +36,7 @@ app.post("/api/rating", (req, res) => {
 
 
 // Erek's API: calculates premium
-router.post('/premium-calculator', (request, response) => {
+app.post('/premium-calculator', (request, response) => {
   try {
     const input = request.body;
     const result = premiumCalculator(input);
@@ -53,4 +53,4 @@ router.post('/premium-calculator', (request, response) => {
 });
 
 
-export default router;
+export default app;

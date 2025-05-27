@@ -1,4 +1,4 @@
-import { premiumCalculator } from "../services/premiumCalculator.js";
+import { premiumCalculator } from "../premiumCalculator.js";
 
 // all the error messages
 import { errorMessages } from "../config/errorMessages.js";
