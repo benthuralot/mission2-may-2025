@@ -7,6 +7,7 @@
  * @param {Object} input - JSON object containing the claim_history field.
  * @returns {Object} JSON object with either a risk_rating or error details.
  */
+import { errorMessages } from "./config/errorMessages.js";
 export function calculateRiskRating(input) {
   console.log("Received input:", input); // Log the input for debugging
 
@@ -15,26 +16,17 @@ export function calculateRiskRating(input) {
 
   // Check if input is a valid object
   if (!input || typeof input !== "object") {
-    return {
-      error: "error",
-      description: "Input is null, undefined, or not a valid object. It must be a valid JSON object.",
-    };
+    return { error: errorMessages.JSON_OBJECT };
   }
 
   // Check if claim_history key is missing
   if (claim_history === undefined) {
-    return {
-      error: "error",
-      description: "Missing required key: claim_history.",
-    };
+     return { error: errorMessages.MISSING_INPUT };
   }
 
   // Check if claim_history is not a string
   if (typeof claim_history !== "string") {
-    return {
-      error: "error",
-      description: "claim_history must be a string.",
-    };
+    return { error: errorMessages.INVALID_DATA_TYPE_STRING };
   }
 
   // List of risk-related keywords to search for
