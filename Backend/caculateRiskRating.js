@@ -1,3 +1,4 @@
+
 /**
  * Calculates the risk rating of a driver based on their claim history.
  * - Counts the number of keyword matches in the claim history.
