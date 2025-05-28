@@ -28,6 +28,7 @@ export function calculateRiskRating(input) {
   }
 
   // Check if claim_history is not a string
+
   if (typeof claim_history !== "string") {
     return { error: errorMessages.INVALID_DATA_TYPE_STRING };
   }
