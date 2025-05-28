@@ -1,6 +1,6 @@
 // api-01.js
 export function calculateCarValue(input) {
-  console.log("Received input:", input);
+  // console.log("Received input:", input);
 
   if (!input || typeof input !== "object") {
     return {
@@ -19,8 +19,8 @@ export function calculateCarValue(input) {
     };
   }
 
-  console.log("Received model:", model);
-  console.log("Received year:", year);
+  // console.log("Received model:", model);
+  // console.log("Received year:", year);
 
   const parsedModel = String(model);
   const parsedYear = parseInt(year);

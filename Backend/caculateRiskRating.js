@@ -12,7 +12,7 @@
 import { errorMessages } from "./config/errorMessages.js";
 
 export function calculateRiskRating(input) {
-  console.log("Received input:", input); // Log the input for debugging
+  //console.log("Received input:", input); // Log the input for debugging
 
   // Destructure claim_history from the input
   const { claim_history } = input;
@@ -53,7 +53,7 @@ export function calculateRiskRating(input) {
   // Ensure rating is between 1 and 5
   const riskRating = Math.min(Math.max(riskCount, 1), 5);
 
-  console.log("Calculated risk rating:", riskRating); // Debug log
+  //console.log("Calculated risk rating:", riskRating); // Debug log
 
   // Return the final risk rating
   return { risk_rating: riskRating };

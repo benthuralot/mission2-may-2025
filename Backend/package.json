@@ -14,7 +14,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "babel": "^5.8.38",
     "express": "^5.1.0"
   },
   "devDependencies": {
