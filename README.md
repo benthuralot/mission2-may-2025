@@ -142,16 +142,26 @@ nodemon index.js
 
 ## Contributors
 
-<a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
+<div style="display: flex; gap: 10px;">
+  <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=benthuralot/mission2-may-2025" alt="Contributors" style="width: 100px; height: 100px;" />
-</a>
+  </a>
+
+  <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
+  <img src="https://github.com/smesi36.png" alt="Contributors" width="100" alt="Erekle avatar" />
+  </a>
+</div>
 
 ---
 
 ## Contact
 
-**Project Lead:** Hershyl
+**Project Lead:** Hershyl<br>
 **GitHub:** [benthuralot](https://github.com/benthuralot)
+
+**Project Developer:** Erekle Sesiashvili<br>
+📧 [erekles@missionreadyhq.com](mailto:erekles@missionreadyhq.com)<br>
+[GitHub Profile] https://github.com/smesi36<br>
 
 Project Repo: [https://github.com/benthuralot/mission2-may-2025](https://github.com/benthuralot/mission2-may-2025)
 
