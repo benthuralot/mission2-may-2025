@@ -46,23 +46,47 @@
 
 ## About The Project
 
-This is a full-stack AI image recognition web app themed after Turners Cars. It allows users to upload an image of a car and get predictions about its make or model using Google Vision API or AutoML Vision.
-
+This is full-stack Insurance Calculating web app themed after Tuners Cars. It allows users to calculate the value of the car, the severity of the damages, and calculates the monthly and yearly premium.
 ---
 
 ## 📁 Folder Structure
 
 ```bash
 mission2-may-2025/
-├── backend/
-│   ├──
-│   ├──
-│   └──
-├── frontend/
-│   ├──
-│   ├──
-│   └──
-└── README.md
+   ── Backend/
+      ├── config/
+      ├── node_modules/
+      ├── tests/
+      │   ├── server.test.js
+      │   └── services.premiumCalculator.test.js
+      ├── .gitignore
+      ├── apiRoutes.js
+      ├── apiRoutes.test.js
+      ├── babel.config.cjs
+      ├── caculateRiskRating.js
+      ├── caculateRiskRating.test.js
+      ├── calculateCarValue_TEST_CASES.md
+      ├── calculateCarValue.js
+      ├── calculateCarValue.test.js
+      ├── jest.config.mjs
+      ├── package-lock.json
+      ├── package.json
+      ├── premiumCalculator.js
+      ├── server.js
+      └── server.test.js
+
+    ──  Frontend
+        ├ src/
+        ├─── assets/
+        ├─── components/
+        │   ├─── Footer.jsx
+        │   ├─── Header.jsx
+        │   ├─── InputCard.css
+        │   └─── InputCard.jsx
+        ├─── App.css
+        ├─── App.jsx
+        ├─── index.css
+        └─── main.jsx
 ```
 
 ---
@@ -109,25 +133,31 @@ npm install
 3. Start locally:
 
 ```bash
-# open a terminal to run frontend
+# Open a terminal to run frontend
 cd frontend
 npm run dev
 
-# open a seperate terminal to run backend
+# Open a seperate terminal to run backend
 cd backend
 nodemon index.js
 ```
-
+---
+### Tester
+```bash
+# Open the terminal to run test file
+cd backend
+npm test
+```
 ---
 
 ## Usage
 
-- Drag and drop or upload an image
-  ![Screenshot 2025-05-22 131405](https://github.com/user-attachments/assets/73ea010a-b451-4d92-96e0-25eedcfa13e6)
-- Click the Analyze button and wait for your results
-  ![Screenshot 2025-05-22 131513](https://github.com/user-attachments/assets/c945e15f-75c5-4157-ba01-bde457778ac2)
-- Get prediction with Car Type, Confidence Score, and image preview
-  ![Screenshot 2025-05-22 131701](https://github.com/user-attachments/assets/5c2f6dd9-b436-4569-8cf6-1f543d7064a5)
+* Input field 1: Input the model of the car and thee year it was made and click submit. It will calculate the value of your car.<br/><br/>
+  ![Input Field 1 screenshot](image.png)<br/><br/>
+* Input Field 2: Input the information of what happened during the crash and press submit. It will calculate the severity of the car crash.<br/><br/>
+  ![Input Field 2 screenshot](image-1.png)<br/><br/>
+* Input Field 3: Input the value of the car and the risk rating, press submit to find out the cost of the premium. <br/><br/>
+  ![Input Field 3 screenshot](image-2.png)<br/><br/>
 
 ---
 
@@ -144,8 +174,10 @@ nodemon index.js
 ## Contributors
 
   <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=benthuralot/mission2-may-2025" alt="Contributors" style="width: 100px; height: 100px;" />
-  </a>
+<img src="https://contrib.rocks/image?repo=benthuralot/mission2-may-2025&anon=1" alt="Contributors" />
+</a>
+ 
+</div>
 
 ---
 
@@ -157,6 +189,10 @@ nodemon index.js
 **Project Developer:** Erekle Sesiashvili<br>
 📧 [erekles@missionreadyhq.com](mailto:erekles@missionreadyhq.com)<br>
 [GitHub Profile] https://github.com/smesi36<br>
+
+**Project Developer:** Tutanekai Manuera<br>
+📧 [tutanekaim@missionreadyhq.com](mailto:tutanekaim@missionreadyhq.com)<br>
+[GitHub Profile] https://github.com/FootNuggets22<br>
 
 Project Repo: [https://github.com/benthuralot/mission2-may-2025](https://github.com/benthuralot/mission2-may-2025)
 

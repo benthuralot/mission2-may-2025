@@ -4,9 +4,6 @@
  * - Counts the number of keyword matches in the claim history.
  * - Returns a rating from 1 (low risk) to 5 (high risk).
  * - Returns error messages for invalid or missing input.
- *
- * @param {Object} input - JSON object containing the claim_history field.
- * @returns {Object} JSON object with either a risk_rating or error details.
  */
 
 import { errorMessages } from "./config/errorMessages.js";
@@ -28,6 +25,7 @@ export function calculateRiskRating(input) {
   }
 
   // Check if claim_history is not a string
+
   if (typeof claim_history !== "string") {
     return { error: errorMessages.INVALID_DATA_TYPE_STRING };
   }
