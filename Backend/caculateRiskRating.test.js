@@ -10,7 +10,7 @@ Negative Tests: Invalid inputs to ensure the proper way to handle errors.
 Edge Cases: Inputs with similar but not exact keywords to test accuracy in keyword matching.   
 */
 
-const { calculateRiskRating } = require("./caculateRiskRating.js");
+import { calculateRiskRating } from "./caculateRiskRating.js";
 import { errorMessages } from "./config/errorMessages.js";
 describe("Risk Rating API Tests", () => {
   // Cover Type: Positive
