@@ -88,16 +88,17 @@ mission2-may-2025/
         ├─── index.css
         └─── main.jsx
 ```
+
 ---
 
 ## Built With
 
-* ![Static Badge](https://img.shields.io/badge/frontend-blue?style=plastic)
-![Static Badge](https://img.shields.io/badge/React-%2361DAFB?style=for-the-badge&logo=react&logoSize=auto&labelColor=black)![Static Badge](https://img.shields.io/badge/-%2341B883?style=for-the-badge&logo=vite&logoColor=%23F0DB4F&logoSize=auto&label=Vite&labelColor=%23646CFF)![Static Badge](https://img.shields.io/badge/-%232965F1?style=for-the-badge&logo=css&logoColor=white&logoSize=auto&label=css&labelColor=%23264DE4)
-* ![Static Badge](https://img.shields.io/badge/backend-red?style=plastic)
-![Static Badge](https://img.shields.io/badge/node.js-%23333333?style=for-the-badge&logo=node.js&logoColor=%23333333&logoSize=auto&labelColor=%23339933)![Static Badge](https://img.shields.io/badge/express.js-%23333333?style=for-the-badge&logo=express&logoColor=white&logoSize=auto&labelColor=red)
-* ![Static Badge](https://img.shields.io/badge/Vertex%20Ai%20%26%20Automl-%2334A853?style=for-the-badge&logo=google&logoColor=%234285F4&logoSize=auto&label=Google%20&labelColor=%23FBBC05)
-* ![Static Badge](https://img.shields.io/badge/Cloud%20run-%23EA4335?style=for-the-badge&logo=google%20cloud&logoColor=%234285F4&logoSize=auto&label=Google%20&labelColor=%23FBBC05)
+- ![Static Badge](https://img.shields.io/badge/frontend-blue?style=plastic)
+  ![Static Badge](https://img.shields.io/badge/React-%2361DAFB?style=for-the-badge&logo=react&logoSize=auto&labelColor=black)![Static Badge](https://img.shields.io/badge/-%2341B883?style=for-the-badge&logo=vite&logoColor=%23F0DB4F&logoSize=auto&label=Vite&labelColor=%23646CFF)![Static Badge](https://img.shields.io/badge/-%232965F1?style=for-the-badge&logo=css&logoColor=white&logoSize=auto&label=css&labelColor=%23264DE4)
+- ![Static Badge](https://img.shields.io/badge/backend-red?style=plastic)
+  ![Static Badge](https://img.shields.io/badge/node.js-%23333333?style=for-the-badge&logo=node.js&logoColor=%23333333&logoSize=auto&labelColor=%23339933)![Static Badge](https://img.shields.io/badge/express.js-%23333333?style=for-the-badge&logo=express&logoColor=white&logoSize=auto&labelColor=red)
+- ![Static Badge](https://img.shields.io/badge/Vertex%20Ai%20%26%20Automl-%2334A853?style=for-the-badge&logo=google&logoColor=%234285F4&logoSize=auto&label=Google%20&labelColor=%23FBBC05)
+- ![Static Badge](https://img.shields.io/badge/Cloud%20run-%23EA4335?style=for-the-badge&logo=google%20cloud&logoColor=%234285F4&logoSize=auto&label=Google%20&labelColor=%23FBBC05)
 
 ---
 
@@ -105,9 +106,9 @@ mission2-may-2025/
 
 ### Prerequisites
 
-* Node.js & npm
-* Google Cloud project with Vision & AutoML APIs enabled
-* A trained AutoML model (if using custom)
+- Node.js & npm
+- Google Cloud project with Vision & AutoML APIs enabled
+- A trained AutoML model (if using custom)
 
 ### Installation
 
@@ -172,7 +173,6 @@ npm test
 
 ## Contributors
 
-<div style="display: flex; gap: 10px;">
   <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
 <img src="https://contrib.rocks/image?repo=benthuralot/mission2-may-2025&anon=1" alt="Contributors" />
 </a>
