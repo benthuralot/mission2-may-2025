@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+/* Basic reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: var(--turners-blue);
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 1.2;
+  color: var(--turners-blue);
+}
+
+
+/* Turners red primary */
+:root {
+  --turners-red: #b80211;
+  --turners-blue: #0580d8;
+  --footer-bg: #003b6f
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background: white;
+  color: var(--turners-blue);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 40px;
+}
+
+nav a {
+  color: var(--turners-blue);
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.upload-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.file-input {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+button {
+  background: var(--turners-red);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #b3000f;
+}
+
+.result {
+  margin-top: 2rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: var(--turners-red);
+}
+
+.footer {
+  background: #f4f4f4;
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.social-links a {
+  color: var(--turners-red);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
