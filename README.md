@@ -149,7 +149,7 @@ nodemon index.js
   </a>
 
   <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
-  <img src="https://avatars.githubusercontent.com/u/197536970?s=400&u=f7bcac3776e6910f886651e266209ec5e3ce977e&v=4" alt="Contributors" style="width: 100px; height: 100px; border-radius: 50%;" />
+  <img src="https://github.com/smesi36.png" alt="Contributors" width="100" alt="Erekle avatar" />
   </a>
 </div>
 

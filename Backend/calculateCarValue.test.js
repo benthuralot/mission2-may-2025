@@ -1,5 +1,5 @@
 // api-01.test.js
-import { calculateCarValue } from "./api-01.js"; // note the .js extension
+import { calculateCarValue } from "./calculateCarValue.js"; // note the .js extension
 
 test("Happy path - Civic 2020", () => {
   expect(calculateCarValue({ model: "Civic", year: 2020 })).toEqual({
@@ -21,19 +21,22 @@ test("Special characters - RX-8 2010", () => {
 
 test("Negative year", () => {
   expect(calculateCarValue({ model: "Corolla", year: -1999 })).toEqual({
-    error: "error: a year must be a four digit integer.",
+    error: "error",
+    description: "A Year must be a positive integer.",
   });
 });
 
 test("Non-numeric year", () => {
   expect(calculateCarValue({ model: "Accord", year: "TwoThousand" })).toEqual({
-    error: "error: a year must be a four digit integer.",
+    error: "error",
+    description: "A Year must be a positive integer.",
   });
 });
 
 test("Empty model name", () => {
   expect(calculateCarValue({ model: "", year: 2020 })).toEqual({
-    car_value: 2020,
+    error: "error",
+    description: "Please enter a model and year.",
   });
 });
 
