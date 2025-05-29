@@ -1,0 +1,114 @@
+.input-card {
+  background: linear-gradient(
+    135deg,
+    #0074c8,
+    #66a9e0
+  ); /* lighter blue gradient */
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 116, 200, 0.4); /* softer blue glow */
+  color: #fff; /* keep white text */
+  position: relative;
+  z-index: 1;
+}
+
+/* Make labels lighter so they pop */
+.input-card label {
+  color: #e0e7f1;
+  font-weight: 600;
+}
+
+/* Inputs with light background for readability */
+.input-card input,
+.input-card textarea {
+  background-color: #f0f4f8;
+  color: #003f7d;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+/* Input focus */
+.input-card input:focus,
+.input-card textarea:focus {
+  outline: 2px solid #0059b3; /* darker blue focus */
+  background-color: #fff;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.input-field {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  width: auto;
+  min-width: 150px;
+  max-width: 250px;
+}
+
+.input-field.year {
+  width: 100px;
+}
+
+.input-textarea {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  max-height: 150px;
+}
+
+.input-submit {
+  margin-top: 1rem;
+  background-color: #003f7d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-submit:hover {
+  background-color: #0056b3;
+}
+
+.input-result {
+  margin-top: 1rem;
+}
+
+.input-error {
+  color: #FF1A1A;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 12px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.input-success {
+  color: #ffd700; /* bright gold/yellow */
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 12px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}

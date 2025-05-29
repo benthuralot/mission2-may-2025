@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import InputCar from "./components/InputCard";
 
 export default function CarInsuranceCalculator() {
   // Input states
   const [carModel, setCarModel] = useState("");
   const [carYear, setCarYear] = useState("");
   const [claimHistory, setClaimHistory] = useState("");
+  const [premiumCarValueInput, setPremiumCarValueInput] = useState("");
+  const [premiumRiskRatingInput, setPremiumRiskRatingInput] = useState("");
 
   // Result states
   const [carValueResult, setCarValueResult] = useState(null);
@@ -17,11 +22,7 @@ export default function CarInsuranceCalculator() {
   const [riskRatingError, setRiskRatingError] = useState(null);
   const [premiumError, setPremiumError] = useState(null);
 
-  // New states for manual premium inputs
-  const [premiumCarValueInput, setPremiumCarValueInput] = useState("");
-  const [premiumRiskRatingInput, setPremiumRiskRatingInput] = useState("");
-
-  // Backend-connected API wrappers
+  // API Functions
   async function calculateCarValueAPI(input) {
     try {
       const res = await fetch("http://localhost:4000/api/calculate", {
@@ -62,38 +63,25 @@ export default function CarInsuranceCalculator() {
   }
 
   // Handlers
-async function handleCalculateCarValue() {
-  setCarValueError(null);
-  setCarValueResult(null);
-  setRiskRatingResult(null);
-  setMonthlyPremiumResult(null);
-  setYearlyPremiumResult(null);
-  setRiskRatingError(null);
-  setPremiumError(null);
-
-  const input = { car: { model: carModel.trim(), year: Number(carYear) } };
-  const result = await calculateCarValueAPI(input);
-
-  if (result.description) {
-    setCarValueError(result.description); // ✅ use only description
-  } else if (result.car_value !== undefined) {
-    setCarValueResult(result.car_value);
-  } else {
-    setCarValueError("Unexpected API response");
+  async function handleCalculateCarValue() {
+    setCarValueError(null);
+    setCarValueResult(null);
+    const input = { car: { model: carModel.trim(), year: Number(carYear) } };
+    const result = await calculateCarValueAPI(input);
+    if (result.description) {
+      setCarValueError(result.description);
+    } else if (result.car_value !== undefined) {
+      setCarValueResult(result.car_value);
+    } else {
+      setCarValueError("Unexpected API response");
+    }
   }
-}
-
 
   async function handleCalculateRiskRating() {
     setRiskRatingError(null);
     setRiskRatingResult(null);
-    setMonthlyPremiumResult(null);
-    setYearlyPremiumResult(null);
-    setPremiumError(null);
-
     const input = { claim_history: claimHistory.trim() };
     const result = await calculateRiskRatingAPI(input);
-
     if (result.error) {
       setRiskRatingError(result.error);
     } else {
@@ -116,8 +104,10 @@ async function handleCalculateCarValue() {
       riskRatingNum >= 1 &&
       riskRatingNum <= 5
     ) {
-      const input = { car_value: carValueNum, risk_rating: riskRatingNum };
-      const result = await premiumCalculatorAPI(input);
+      const result = await premiumCalculatorAPI({
+        car_value: carValueNum,
+        risk_rating: riskRatingNum,
+      });
       if (result.error) {
         setPremiumError(result.error);
       } else {
@@ -125,17 +115,16 @@ async function handleCalculateCarValue() {
         setMonthlyPremiumResult(result.monthly_premium);
       }
     } else {
-      if (carValueResult === null) {
-        setPremiumError("Calculate car value first or enter manually.");
+      if (carValueResult === null || riskRatingResult === null) {
+        setPremiumError(
+          "Calculate car value and risk rating first or enter manually."
+        );
         return;
       }
-      if (riskRatingResult === null) {
-        setPremiumError("Calculate risk rating first or enter manually.");
-        return;
-      }
-
-      const input = { car_value: carValueResult, risk_rating: riskRatingResult };
-      const result = await premiumCalculatorAPI(input);
+      const result = await premiumCalculatorAPI({
+        car_value: carValueResult,
+        risk_rating: riskRatingResult,
+      });
       if (result.error) {
         setPremiumError(result.error);
       } else {
@@ -146,91 +135,84 @@ async function handleCalculateCarValue() {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: "auto", fontFamily: "Arial, sans-serif" }}>
-      <h2>Turners Car Insurance Calculator</h2>
+    <>
+      <Header />
+      <main style={{ maxWidth: 600, margin: "auto", padding: "20px" }}>
+        <h2>Turners Car Insurance Calculator</h2>
 
-      {/* Car Value */}
-      <section style={{ marginBottom: 30 }}>
-        <h3>1. Calculate Car Value</h3>
-        <input
-          type="text"
-          placeholder="Car Model (e.g. Toyota)"
-          value={carModel}
-          onChange={(e) => setCarModel(e.target.value)}
-          style={{ marginRight: 10, padding: 6 }}
+        <InputCar
+          title="1. Calculate Car Value"
+          inputs={[
+            {
+              label: "Car Model",
+              type: "text",
+              value: carModel,
+              onChange: (e) => setCarModel(e.target.value),
+            },
+            {
+              label: "Year",
+              type: "number",
+              value: carYear,
+              onChange: (e) => setCarYear(e.target.value),
+            },
+          ]}
+          onSubmit={handleCalculateCarValue}
+          result={
+            carValueResult !== null ? `Car Value: $${carValueResult}` : null
+          }
+          error={carValueError}
         />
-        <input
-          type="number"
-          placeholder="Year (e.g. 2015)"
-          value={carYear}
-          onChange={(e) => setCarYear(e.target.value)}
-          style={{ marginRight: 10, padding: 6, width: 100 }}
+
+        <InputCar
+          title="2. Calculate Risk Rating"
+          inputs={[
+            {
+              label: "Claim History",
+              type: "textarea",
+              value: claimHistory,
+              onChange: (e) => setClaimHistory(e.target.value),
+            },
+          ]}
+          onSubmit={handleCalculateRiskRating}
+          result={
+            riskRatingResult !== null
+              ? `Risk Rating: ${riskRatingResult}`
+              : null
+          }
+          error={riskRatingError}
         />
-        <button onClick={handleCalculateCarValue} style={{ padding: "6px 12px" }}>
-          Calculate Car Value
-        </button>
-        <div style={{ marginTop: 10 }}>
-          {carValueError && <div style={{ color: "red" }}>Error: {carValueError}</div>}
-          {carValueResult !== null && <div>Car Value: <strong>${carValueResult}</strong></div>}
-        </div>
-      </section>
 
-      {/* Risk Rating */}
-      <section style={{ marginBottom: 30 }}>
-        <h3>2. Calculate Risk Rating</h3>
-        <textarea
-          placeholder="Enter Claim History"
-          value={claimHistory}
-          onChange={(e) => setClaimHistory(e.target.value)}
-          rows={4}
-          style={{ width: "100%", padding: 6, fontFamily: "inherit" }}
+        <InputCar
+          title="3. Calculate Premium"
+          inputs={[
+            {
+              label: "Car Value",
+              type: "number",
+              value: premiumCarValueInput,
+              onChange: (e) => setPremiumCarValueInput(e.target.value),
+            },
+            {
+              label: "Risk Rating (1-5)",
+              type: "number",
+              value: premiumRiskRatingInput,
+              onChange: (e) => setPremiumRiskRatingInput(e.target.value),
+              min: 1,
+              max: 5,
+            },
+          ]}
+          onSubmit={handleCalculatePremium}
+          result={
+            monthlyPremiumResult !== null && yearlyPremiumResult !== null ? (
+              <>
+                <div>Monthly: ${monthlyPremiumResult.toFixed(2)}</div>
+                <div>Yearly: ${yearlyPremiumResult.toFixed(2)}</div>
+              </>
+            ) : null
+          }
+          error={premiumError}
         />
-        <button onClick={handleCalculateRiskRating} style={{ marginTop: 8, padding: "6px 12px" }}>
-          Calculate Risk Rating
-        </button>
-        <div style={{ marginTop: 10 }}>
-          {riskRatingError && <div style={{ color: "red" }}>Error: {riskRatingError}</div>}
-          {riskRatingResult !== null && <div>Risk Rating: <strong>{riskRatingResult}</strong></div>}
-        </div>
-      </section>
-
-      {/* Premium Calculator */}
-      <section style={{ marginBottom: 30 }}>
-        <h3>3. Calculate Premium</h3>
-
-        <div style={{ marginBottom: 10 }}>
-          <input
-            type="number"
-            placeholder="Car Value"
-            value={premiumCarValueInput}
-            onChange={(e) => setPremiumCarValueInput(e.target.value)}
-            style={{ marginRight: 10, padding: 6, width: 120 }}
-          />
-          <input
-            type="number"
-            placeholder="Risk Rating (1-5)"
-            value={premiumRiskRatingInput}
-            onChange={(e) => setPremiumRiskRatingInput(e.target.value)}
-            style={{ marginRight: 10, padding: 6, width: 120 }}
-            min={1}
-            max={5}
-          />
-        </div>
-
-        <button onClick={handleCalculatePremium} style={{ padding: "6px 12px" }}>
-          Calculate Premium
-        </button>
-
-        <div style={{ marginTop: 10 }}>
-          {premiumError && <div style={{ color: "red" }}>Error: {premiumError}</div>}
-          {monthlyPremiumResult !== null && yearlyPremiumResult !== null && (
-            <div>
-              <div>Monthly Premium: <strong>${monthlyPremiumResult.toFixed(2)}</strong></div>
-              <div>Yearly Premium: <strong>${yearlyPremiumResult.toFixed(2)}</strong></div>
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }
