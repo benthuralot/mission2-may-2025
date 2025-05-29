@@ -187,13 +187,13 @@ export default function CarInsuranceCalculator() {
           inputs={[
             {
               label: "Car Value",
-              type: "number",
+              type: "text",
               value: premiumCarValueInput,
               onChange: (e) => setPremiumCarValueInput(e.target.value),
             },
             {
               label: "Risk Rating (1-5)",
-              type: "number",
+              type: "text",
               value: premiumRiskRatingInput,
               onChange: (e) => setPremiumRiskRatingInput(e.target.value),
               min: 1,
