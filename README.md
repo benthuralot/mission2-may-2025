@@ -150,6 +150,7 @@ nodemon index.js
   <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
   <img src="https://github.com/smesi36.png" alt="Contributors" width="100" alt="Erekle avatar" />
   </a>
+ 
 </div>
 
 ---
@@ -162,6 +163,10 @@ nodemon index.js
 **Project Developer:** Erekle Sesiashvili<br>
 📧 [erekles@missionreadyhq.com](mailto:erekles@missionreadyhq.com)<br>
 [GitHub Profile] https://github.com/smesi36<br>
+
+**Project Developer:** Tutanekai Manuera<br>
+📧 [tutanekaim@missionreadyhq.com](mailto:tutanekaim@missionreadyhq.com)<br>
+[GitHub Profile] https://github.com/FootNuggets22<br>
 
 Project Repo: [https://github.com/benthuralot/mission2-may-2025](https://github.com/benthuralot/mission2-may-2025)
 
