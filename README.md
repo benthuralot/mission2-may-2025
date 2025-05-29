@@ -143,15 +143,9 @@ nodemon index.js
 
 ## Contributors
 
-<div style="display: flex; gap: 10px;">
   <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=benthuralot/mission2-may-2025" alt="Contributors" style="width: 100px; height: 100px;" />
   </a>
-
-  <a href="https://github.com/benthuralot/mission2-may-2025/graphs/contributors">
-  <img src="https://github.com/smesi36.png" alt="Contributors" width="100" alt="Erekle avatar" />
-  </a>
-</div>
 
 ---
 
