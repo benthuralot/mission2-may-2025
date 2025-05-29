@@ -21,73 +21,68 @@ export default function CarInsuranceCalculator() {
   const [premiumCarValueInput, setPremiumCarValueInput] = useState("");
   const [premiumRiskRatingInput, setPremiumRiskRatingInput] = useState("");
 
-  // Mock API call wrappers - replace these with real fetch calls or imported API functions
+  // Backend-connected API wrappers
   async function calculateCarValueAPI(input) {
-    const { model, year } = input;
-    if (!model || !year) {
-      return { error: "Missing model or year" };
+    try {
+      const res = await fetch("http://localhost:4000/api/calculate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      });
+      return await res.json();
+    } catch (err) {
+      return { error: "Failed to connect to backend" };
     }
-    if (typeof model !== "string" || isNaN(year)) {
-      return { error: "Invalid model or year" };
-    }
-    const cleanedModel = model.replace(/[^a-zA-Z]/g, "");
-    const charValueSum = cleanedModel
-      .toUpperCase()
-      .split("")
-      .reduce((sum, c) => sum + (c.charCodeAt(0) - 64), 0);
-    const car_value = charValueSum * 100 + parseInt(year);
-    return { car_value };
   }
 
   async function calculateRiskRatingAPI(input) {
-    const { claim_history } = input;
-    if (!claim_history || typeof claim_history !== "string") {
-      return { error: "Invalid claim history" };
+    try {
+      const res = await fetch("http://localhost:4000/api/rating", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      });
+      return await res.json();
+    } catch (err) {
+      return { error: "Failed to connect to backend" };
     }
-    const keywords = ["collide", "crash", "scratch", "bump", "smash"];
-    let riskCount = 0;
-    const text = claim_history.toLowerCase();
-    keywords.forEach((kw) => {
-      const matches = text.match(new RegExp(kw, "g"));
-      if (matches) riskCount += matches.length;
-    });
-    const risk_rating = Math.min(Math.max(riskCount, 1), 5);
-    return { risk_rating };
   }
 
   async function premiumCalculatorAPI(input) {
-    const { car_value, risk_rating } = input;
-    if (typeof car_value !== "number" || typeof risk_rating !== "number") {
-      return { error: "Invalid inputs for premium calculator" };
+    try {
+      const res = await fetch("http://localhost:4000/api/premium-calculator", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      });
+      return await res.json();
+    } catch (err) {
+      return { error: "Failed to connect to backend" };
     }
-    // Mock premium calculation
-    const yearly_premium = car_value * risk_rating * 0.01;
-    const monthly_premium = yearly_premium / 12;
-    return {
-      yearly_premium: yearly_premium.toFixed(2),
-      monthly_premium: monthly_premium.toFixed(2),
-    };
   }
 
   // Handlers
-  async function handleCalculateCarValue() {
-    setCarValueError(null);
-    setCarValueResult(null);
-    setRiskRatingResult(null);
-    setMonthlyPremiumResult(null);
-    setYearlyPremiumResult(null);
-    setRiskRatingError(null);
-    setPremiumError(null);
+async function handleCalculateCarValue() {
+  setCarValueError(null);
+  setCarValueResult(null);
+  setRiskRatingResult(null);
+  setMonthlyPremiumResult(null);
+  setYearlyPremiumResult(null);
+  setRiskRatingError(null);
+  setPremiumError(null);
 
-    const input = { model: carModel.trim(), year: Number(carYear) };
-    const result = await calculateCarValueAPI(input);
+  const input = { car: { model: carModel.trim(), year: Number(carYear) } };
+  const result = await calculateCarValueAPI(input);
 
-    if (result.error) {
-      setCarValueError(result.error);
-    } else {
-      setCarValueResult(result.car_value);
-    }
+  if (result.description) {
+    setCarValueError(result.description); // ✅ use only description
+  } else if (result.car_value !== undefined) {
+    setCarValueResult(result.car_value);
+  } else {
+    setCarValueError("Unexpected API response");
   }
+}
+
 
   async function handleCalculateRiskRating() {
     setRiskRatingError(null);
@@ -111,7 +106,6 @@ export default function CarInsuranceCalculator() {
     setMonthlyPremiumResult(null);
     setYearlyPremiumResult(null);
 
-    // Try manual inputs first
     const carValueNum = Number(premiumCarValueInput);
     const riskRatingNum = Number(premiumRiskRatingInput);
 
@@ -131,7 +125,6 @@ export default function CarInsuranceCalculator() {
         setMonthlyPremiumResult(result.monthly_premium);
       }
     } else {
-      // fallback to calculated values
       if (carValueResult === null) {
         setPremiumError("Calculate car value first or enter manually.");
         return;
@@ -232,8 +225,8 @@ export default function CarInsuranceCalculator() {
           {premiumError && <div style={{ color: "red" }}>Error: {premiumError}</div>}
           {monthlyPremiumResult !== null && yearlyPremiumResult !== null && (
             <div>
-              <div>Monthly Premium: <strong>${monthlyPremiumResult}</strong></div>
-              <div>Yearly Premium: <strong>${yearlyPremiumResult}</strong></div>
+              <div>Monthly Premium: <strong>${monthlyPremiumResult.toFixed(2)}</strong></div>
+              <div>Yearly Premium: <strong>${yearlyPremiumResult.toFixed(2)}</strong></div>
             </div>
           )}
         </div>
